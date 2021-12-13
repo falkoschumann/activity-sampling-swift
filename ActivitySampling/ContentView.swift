@@ -14,9 +14,9 @@ struct ContentView: View {
     @State private var remainingTime = "00:20:00"
     @State private var progress = 0.0
     @State private var log = "Lorem ipsum"
-
+    
     private let remainingTimeFormatter: DateFormatter
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Activity:")
@@ -26,7 +26,7 @@ struct ContentView: View {
             Button(action: { logActivity() }) {
                 Text("Log").frame(maxWidth: .infinity)
             }
-                .disabled(formDisabled)
+            .disabled(formDisabled)
             Text(remainingTime)
                 .frame(maxWidth: .infinity)
             ProgressView(value: progress)
@@ -34,10 +34,10 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .textSelection(.enabled)
         }
-            .padding()
-            .frame(width: 320, height: 640)
+        .padding()
+        .frame(width: 320, height: 640)
     }
-
+    
     init() {
         remainingTimeFormatter = DateFormatter()
         remainingTimeFormatter.dateStyle = .none
@@ -45,7 +45,7 @@ struct ContentView: View {
         remainingTimeFormatter.timeZone = TimeZone(abbreviation: "UTC")
         remainingTime = remainingTimeFormatter.string(from: Date(timeIntervalSince1970: 20 * 60))
     }
-
+    
     private func logActivity() {
         print("logActivity: " + activity)
     }
