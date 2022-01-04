@@ -11,7 +11,7 @@ class RequestHandlerTests: XCTestCase {
     private var fixture: RequestHandler!
     
     override func setUpWithError() throws {
-        fixture = RequestHandler()
+        fixture = RequestHandler(dateFactory: { ISO8601DateFormatter().date(from: "2021-12-13T21:39:56Z")! })
     }
     
     override func tearDownWithError() throws {
@@ -19,23 +19,24 @@ class RequestHandlerTests: XCTestCase {
     }
     
     func testLogActivity() throws {
-        fixture.logActivity(createActivity())
+        fixture.logActivity("Lorem ipsum")
         
         let activities = fixture.selectAllActivities()
-        XCTAssertEqual(activities, [createActivity()])
+        
+        XCTAssertEqual(activities, [createActivity(timestamp: "2021-12-13T21:39:56Z")])
     }
     
     func testSelectActivities() throws {
-        fixture.logActivity(createActivity())
+        fixture.logActivity("Lorem ipsum")
         
         let activities = fixture.selectAllActivities()
         
-        XCTAssertEqual(activities, [createActivity()])
+        XCTAssertEqual(activities, [createActivity(timestamp: "2021-12-13T21:39:56Z")])
     }
 }
 
-fileprivate func createActivity() -> Activity {
-    let timestamp = try! Date("2021-12-13T21:39:56Z", strategy: .iso8601)
-    let description = "Lorem ipsum"
-    return Activity(timestamp: timestamp, description: description)
+fileprivate func createActivity(timestamp: String) -> Activity {
+    let t = ISO8601DateFormatter().date(from: timestamp)
+    let d = "Lorem ipsum"
+    return Activity(timestamp: t!, description: d)
 }

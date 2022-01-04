@@ -2,6 +2,7 @@
 
 ## Aktivität erfassen
 
+- [x] Erfasse momentane Aktivität
 - [ ] Frage Nutzer regelmäßig
 - [ ] Archiviere Zeitstempel, Intervall, Kunde, Projekt, Aufgabe, Notiz
 - [ ] Sichere Protokoll als CSV-Datei

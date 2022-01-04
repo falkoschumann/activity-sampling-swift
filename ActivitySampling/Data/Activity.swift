@@ -11,3 +11,8 @@ struct Activity: Equatable {
     let timestamp: Date
     let description: String
 }
+
+struct WorkingDay {
+    let date: Date
+    let activities: [Activity]
+}
