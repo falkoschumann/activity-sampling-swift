@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		CC5CDBD82767ED270097CB96 /* RequestHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBD72767ED270097CB96 /* RequestHandlerTests.swift */; };
 		CC5CDBDF2767ED830097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
-		CC5CDBE22767F1F70097CB96 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBE12767F1F70097CB96 /* Activity.swift */; };
 		CC5CDBE32767F3860097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
-		CC5CDBE52767F3990097CB96 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBE12767F1F70097CB96 /* Activity.swift */; };
 		CCF479B127664CD400BE92BF /* ActivitySamplingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */; };
 		CCF479B327664CD400BE92BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF479B227664CD400BE92BF /* ContentView.swift */; };
 		CCF479B527664CD600BE92BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF479B427664CD600BE92BF /* Assets.xcassets */; };
@@ -33,7 +31,6 @@
 		CC5CDBD52767ED270097CB96 /* ActivitySamplingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActivitySamplingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5CDBD72767ED270097CB96 /* RequestHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandlerTests.swift; sourceTree = "<group>"; };
 		CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
-		CC5CDBE12767F1F70097CB96 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		CCF479AD27664CD400BE92BF /* ActivitySampling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivitySampling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySamplingApp.swift; sourceTree = "<group>"; };
 		CCF479B227664CD400BE92BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,14 +65,6 @@
 			path = ActivitySamplingTests;
 			sourceTree = "<group>";
 		};
-		CC5CDBE02767F1E90097CB96 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				CC5CDBE12767F1F70097CB96 /* Activity.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		CCF479A427664CD400BE92BF = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +87,6 @@
 		CCF479AF27664CD400BE92BF /* ActivitySampling */ = {
 			isa = PBXGroup;
 			children = (
-				CC5CDBE02767F1E90097CB96 /* Data */,
 				CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */,
 				CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */,
 				CCF479B227664CD400BE92BF /* ContentView.swift */,
@@ -219,7 +207,6 @@
 			files = (
 				CC5CDBE32767F3860097CB96 /* RequestHandler.swift in Sources */,
 				CC5CDBD82767ED270097CB96 /* RequestHandlerTests.swift in Sources */,
-				CC5CDBE52767F3990097CB96 /* Activity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +214,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC5CDBE22767F1F70097CB96 /* Activity.swift in Sources */,
 				CCF479B327664CD400BE92BF /* ContentView.swift in Sources */,
 				CCF479B127664CD400BE92BF /* ActivitySamplingApp.swift in Sources */,
 				CC5CDBDF2767ED830097CB96 /* RequestHandler.swift in Sources */,

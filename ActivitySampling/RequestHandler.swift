@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct Activity: Equatable {
+    let timestamp: Date
+    let description: String
+}
+
 class RequestHandler {
     static let shared = RequestHandler()
     

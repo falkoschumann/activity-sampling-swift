@@ -15,6 +15,11 @@ struct ContentViewData {
     var progress = 0.0
 }
 
+struct WorkingDay {
+    let date: Date
+    let activities: [Activity]
+}
+
 struct ContentView: View {
     @State private var contentViewData = ContentViewData()
     @State private var log: [WorkingDay] = []
@@ -23,6 +28,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // TODO: Extrahiere FormView
             Text("Activity:")
             TextField("What are you working on?", text: $contentViewData.activity)
                 .disabled(contentViewData.formDisabled)
@@ -31,9 +37,12 @@ struct ContentView: View {
                 Text("Log").frame(maxWidth: .infinity)
             }
             .disabled(contentViewData.formDisabled)
+            
+            // TODO: Extrahiere PeriodView
             Text(contentViewData.remainingTime)
                 .frame(maxWidth: .infinity)
             ProgressView(value: contentViewData.progress)
+            
             List() {
                 ForEach(log, id: \.date) { workingDay in
                     Section(header: Text(workingDay.date, formatter: logDateFormatter)) {
