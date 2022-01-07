@@ -11,8 +11,8 @@ import SwiftUI
 struct ContentViewData {
     var formDisabled = false
     var activity = ""
-    var remainingTime = remainingTimeFormatter.string(from: Date(timeIntervalSince1970: 20 * 60))
-    var progress = 0.0
+    var period = 20 * 60.0
+    var remainingTime = 20 * 60.0
 }
 
 struct WorkingDay {
@@ -37,12 +37,7 @@ struct ContentView: View {
                 Text("Log").frame(maxWidth: .infinity)
             }
             .disabled(contentViewData.formDisabled)
-            
-            // TODO: Extrahiere PeriodView
-            Text(contentViewData.remainingTime)
-                .frame(maxWidth: .infinity)
-            ProgressView(value: contentViewData.progress)
-            
+            PeriodView(period: $contentViewData.period, remaining: $contentViewData.remainingTime)
             List() {
                 ForEach(log, id: \.date) { workingDay in
                     Section(header: Text(workingDay.date, formatter: logDateFormatter)) {
@@ -92,14 +87,6 @@ struct ContentView: View {
             })
     }
 }
-
-private let remainingTimeFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .medium
-    formatter.timeZone = TimeZone(abbreviation: "UTC")
-    return formatter
-}()
 
 private let logDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
