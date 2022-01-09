@@ -41,7 +41,17 @@ private let remainingTimeFormatter: DateFormatter = {
 
 struct PeriodView_Previews: PreviewProvider {
     static var previews: some View {
-        PeriodView(period: .constant(1200), remaining: .constant(400))
-            .frame(width: 300)
+        Group {
+            PeriodView(period: .constant(1200), remaining: .constant(1200))
+                .previewDisplayName("not started")
+                .frame(width: 300)
+            PeriodView(period: .constant(1200), remaining: .constant(400))
+                .previewDisplayName("in progress")
+                .frame(width: 300)
+            PeriodView(period: .constant(1200), remaining: .constant(0))
+                .previewDisplayName("finished")
+                .frame(width: 300)
+            
+        }
     }
 }

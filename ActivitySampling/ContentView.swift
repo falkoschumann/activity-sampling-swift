@@ -21,23 +21,15 @@ struct WorkingDay {
 }
 
 struct ContentView: View {
-    @State private var contentViewData = ContentViewData()
+    @State private var data = ContentViewData()
     @State private var log: [WorkingDay] = []
     
     let requestHandler: RequestHandler
     
     var body: some View {
         VStack(alignment: .leading) {
-            // TODO: Extrahiere FormView
-            Text("Activity:")
-            TextField("What are you working on?", text: $contentViewData.activity)
-                .disabled(contentViewData.formDisabled)
-                .onSubmit { logActivity() }
-            Button(action: { logActivity() }) {
-                Text("Log").frame(maxWidth: .infinity)
-            }
-            .disabled(contentViewData.formDisabled)
-            PeriodView(period: $contentViewData.period, remaining: $contentViewData.remainingTime)
+            ActivityFormView(disabled: $data.formDisabled, activity: $data.activity, log: { logActivity() })
+            PeriodView(period: $data.period, remaining: $data.remainingTime)
             List() {
                 ForEach(log, id: \.date) { workingDay in
                     Section(header: Text(workingDay.date, formatter: logDateFormatter)) {
@@ -74,7 +66,7 @@ struct ContentView: View {
     }
     
     private func logActivity() {
-        requestHandler.logActivity(contentViewData.activity)
+        requestHandler.logActivity(data.activity)
         
         let activities = requestHandler.selectAllActivities()
         display(activities: activities)
