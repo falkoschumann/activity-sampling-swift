@@ -11,6 +11,7 @@
 		CC5CDBDF2767ED830097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
 		CC5CDBE32767F3860097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
 		CC7E19362787935D00773DD7 /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7E19352787935D00773DD7 /* PeriodView.swift */; };
+		CCB44B27278CD6AD008C3837 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB44B26278CD6AD008C3837 /* ActivityLogView.swift */; };
 		CCC458342788E3C300F771AD /* ActivityFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC458332788E3C300F771AD /* ActivityFormView.swift */; };
 		CCF479B127664CD400BE92BF /* ActivitySamplingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */; };
 		CCF479B327664CD400BE92BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF479B227664CD400BE92BF /* ContentView.swift */; };
@@ -34,6 +35,7 @@
 		CC5CDBD72767ED270097CB96 /* RequestHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandlerTests.swift; sourceTree = "<group>"; };
 		CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		CC7E19352787935D00773DD7 /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
+		CCB44B26278CD6AD008C3837 /* ActivityLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; };
 		CCC458332788E3C300F771AD /* ActivityFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFormView.swift; sourceTree = "<group>"; };
 		CCF479AD27664CD400BE92BF /* ActivitySampling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivitySampling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySamplingApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */,
 				CCF479B227664CD400BE92BF /* ContentView.swift */,
 				CCC458332788E3C300F771AD /* ActivityFormView.swift */,
+				CCB44B26278CD6AD008C3837 /* ActivityLogView.swift */,
 				CC7E19352787935D00773DD7 /* PeriodView.swift */,
 				CCF479B427664CD600BE92BF /* Assets.xcassets */,
 				CCF479B927664CD600BE92BF /* ActivitySampling.entitlements */,
@@ -224,6 +227,7 @@
 				CCF479B327664CD400BE92BF /* ContentView.swift in Sources */,
 				CC7E19362787935D00773DD7 /* PeriodView.swift in Sources */,
 				CCF479B127664CD400BE92BF /* ActivitySamplingApp.swift in Sources */,
+				CCB44B27278CD6AD008C3837 /* ActivityLogView.swift in Sources */,
 				CC5CDBDF2767ED830097CB96 /* RequestHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

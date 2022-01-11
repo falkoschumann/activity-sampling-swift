@@ -15,14 +15,9 @@ struct ContentViewData {
     var remainingTime = 20 * 60.0
 }
 
-struct WorkingDay {
-    let date: Date
-    let activities: [Activity]
-}
-
 struct ContentView: View {
     @State private var data = ContentViewData()
-    @State private var log: [WorkingDay] = []
+    @State private var activities: [Activity] = []
     
     let requestHandler: RequestHandler
     
@@ -30,21 +25,7 @@ struct ContentView: View {
         VStack(alignment: .leading) {
             ActivityFormView(disabled: $data.formDisabled, activity: $data.activity, log: { logActivity() })
             PeriodView(period: $data.period, remaining: $data.remainingTime)
-            List() {
-                ForEach(log, id: \.date) { workingDay in
-                    Section(header: Text(workingDay.date, formatter: logDateFormatter)) {
-                        ForEach(workingDay.activities, id: \.timestamp) { activity in
-                            HStack {
-                                Text(activity.timestamp, formatter: logTimeFormatter)
-                                Text("-")
-                                Text(activity.description)
-                            }
-                        }
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .textSelection(.enabled)
+            ActivityLogView(activities: $activities)
         }
         .padding()
         .frame(width: 320, height: 640)
@@ -61,38 +42,14 @@ struct ContentView: View {
     }
     
     func run() {
-        let activities = requestHandler.selectAllActivities()
-        display(activities: activities)
+        activities = requestHandler.selectAllActivities()
     }
     
     private func logActivity() {
         requestHandler.logActivity(data.activity)
-        
-        let activities = requestHandler.selectAllActivities()
-        display(activities: activities)
-    }
-    
-    func display(activities: [Activity]) {
-        log = Dictionary(grouping: activities, by: {it in logDateFormatter.string(from: it.timestamp)})
-            .map({ (dateString, activities) in
-                return WorkingDay(date: logDateFormatter.date(from: dateString)!, activities: activities)
-            })
+        activities = requestHandler.selectAllActivities()
     }
 }
-
-private let logDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .long
-    formatter.timeStyle = .none
-    return formatter
-}()
-
-private let logTimeFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -21,7 +21,7 @@ class RequestHandler {
         handler.log = [
             Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:20:00Z")!, description: "Lorem ipsum dolor sit amet"),
             Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:40:00Z")!, description: "At vero eos et accusam"),
-            Activity(timestamp: dateFormatter.date(from: "2022-01-04T22:00:00Z")!, description: "Stet clita kasd gubergren")
+            Activity(timestamp: dateFormatter.date(from: "2022-01-05T09:00:00Z")!, description: "Stet clita kasd gubergren")
         ]
         return handler
     }()
