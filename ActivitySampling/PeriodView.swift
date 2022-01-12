@@ -9,25 +9,17 @@ import SwiftUI
 
 struct PeriodView: View {
     @Binding var period: TimeInterval
-    @Binding var remaining: TimeInterval {
-        didSet {
-            self.update()
-        }
-    }
+    @Binding var remaining: TimeInterval
     
-    @State var remainingTime = "00:00:00"
+    private var remainingTime: String {
+        remainingTimeFormatter.string(from: Date(timeIntervalSince1970: remaining))
+    }
     
     var body: some View {
         VStack {
             Text(remainingTime)
             ProgressView(value: 1 - remaining / period)
-        }.onAppear {
-            update()
         }
-    }
-    
-    private func update() {
-        remainingTime = remainingTimeFormatter.string(from: Date(timeIntervalSince1970: remaining))
     }
 }
 

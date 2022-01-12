@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ActivityLogView: View {
-    @Binding var activities: [Activity] {
-        didSet {
-            self.update()
-        }
-    }
+    @Binding var activities: [Activity]
     
-    @State private var log: [WorkingDay] = []
+    private var log: [WorkingDay] {
+        Dictionary(grouping: activities, by: {it in logDateFormatter.string(from: it.timestamp)})
+            .map({ (dateString, activities) in
+                return WorkingDay(date: logDateFormatter.date(from: dateString)!, activities: activities)
+            }).sorted()
+    }
     
     var body: some View {
         List() {
@@ -31,16 +32,6 @@ struct ActivityLogView: View {
             }
         }
         .textSelection(.enabled)
-        .onAppear {
-            update()
-        }
-    }
-    
-    private func update() {
-        log = Dictionary(grouping: activities, by: {it in logDateFormatter.string(from: it.timestamp)})
-            .map({ (dateString, activities) in
-                return WorkingDay(date: logDateFormatter.date(from: dateString)!, activities: activities)
-            }).sorted()
     }
 }
 
