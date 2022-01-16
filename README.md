@@ -13,6 +13,8 @@
 - [ ] Ändere Intervall
 - [ ] Ändere Kapazität
 - [ ] Hinterlege Vorname und Nachname
+- [ ] Hinterlege Kunden und Projekte
+- [ ] Hinterlege Aufgaben für Projekt
 
 ## Protokoll auswerten
 
