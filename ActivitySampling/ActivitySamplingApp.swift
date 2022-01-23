@@ -11,7 +11,9 @@ import SwiftUI
 struct ActivitySamplingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(requestHandler: .shared)
+            ContentView(model: ContentViewModel(requestHandler: .shared), notifier: .shared)
+        }.commands() {
+            ActivitySamplingCommands()
         }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC2EFE1F27988B34004F3EA2 /* ActivitySamplingCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EFE1E27988B34004F3EA2 /* ActivitySamplingCommands.swift */; };
+		CC2EFE212798A202004F3EA2 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EFE202798A202004F3EA2 /* Notifier.swift */; };
 		CC5CDBD82767ED270097CB96 /* RequestHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBD72767ED270097CB96 /* RequestHandlerTests.swift */; };
 		CC5CDBDF2767ED830097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
 		CC5CDBE32767F3860097CB96 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC2EFE1E27988B34004F3EA2 /* ActivitySamplingCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySamplingCommands.swift; sourceTree = "<group>"; };
+		CC2EFE202798A202004F3EA2 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		CC2F5EFD27664E2B009F0E77 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CC5CDBD52767ED270097CB96 /* ActivitySamplingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActivitySamplingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5CDBD72767ED270097CB96 /* RequestHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandlerTests.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				CCF479B027664CD400BE92BF /* ActivitySamplingApp.swift */,
 				CC5CDBDE2767ED830097CB96 /* RequestHandler.swift */,
 				CCF479B227664CD400BE92BF /* ContentView.swift */,
+				CC2EFE1E27988B34004F3EA2 /* ActivitySamplingCommands.swift */,
+				CC2EFE202798A202004F3EA2 /* Notifier.swift */,
 				CCC458332788E3C300F771AD /* ActivityFormView.swift */,
 				CCB44B26278CD6AD008C3837 /* ActivityLogView.swift */,
 				CC7E19352787935D00773DD7 /* PeriodView.swift */,
@@ -223,6 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC2EFE1F27988B34004F3EA2 /* ActivitySamplingCommands.swift in Sources */,
+				CC2EFE212798A202004F3EA2 /* Notifier.swift in Sources */,
 				CCC458342788E3C300F771AD /* ActivityFormView.swift in Sources */,
 				CCF479B327664CD400BE92BF /* ContentView.swift in Sources */,
 				CC7E19362787935D00773DD7 /* PeriodView.swift in Sources */,

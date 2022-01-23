@@ -8,53 +8,67 @@
 import Foundation
 import SwiftUI
 
-struct ContentViewData {
-    var formDisabled = false
-    var activity = ""
-    var period = 20 * 60.0
-    var remainingTime = 20 * 60.0
-}
-
-struct ContentView: View {
-    @State private var data = ContentViewData()
-    @State private var activities: [Activity] = []
-    
+class ContentViewModel : ObservableObject {
     let requestHandler: RequestHandler
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            ActivityFormView(disabled: $data.formDisabled, activity: $data.activity, log: { logActivity() })
-            PeriodView(period: $data.period, remaining: $data.remainingTime)
-            ActivityLogView(activities: $activities)
-        }
-        .padding()
-        .frame(width: 320, height: 640)
-        .onAppear(perform: {
-            run()
-        })
-        .onDisappear {
-            exit(0)
-        }
-    }
+    @Published var formDisabled = true
+    @Published var activity = ""
+    
+    @Published var activities: [Activity] = []
     
     init(requestHandler: RequestHandler) {
         self.requestHandler = requestHandler
+        
+        let center = NotificationCenter.default
+        center.addObserver(forName: .ActivitySamplingOnPeriodElapsed, object: nil, queue: nil) { _ in
+            self.formDisabled = false
+        }
     }
     
     func run() {
         activities = requestHandler.selectAllActivities()
     }
     
-    private func logActivity() {
-        requestHandler.logActivity(data.activity)
+    func logActivity() {
+        requestHandler.logActivity(activity)
         activities = requestHandler.selectAllActivities()
+        formDisabled = true
+    }
+    
+    deinit {
+        let center = NotificationCenter.default
+        center.removeObserver(self, name: .ActivitySamplingOnPeriodElapsed, object: nil)
+    }
+}
+
+struct ContentView: View {
+    @ObservedObject var model: ContentViewModel
+    @ObservedObject var notifier: Notifier
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            ActivityFormView(disabled: $model.formDisabled, activity: $model.activity, log: {
+                model.logActivity()
+                
+            })
+            PeriodView(period: $notifier.period, remaining: $notifier.remainingTime)
+            ActivityLogView(activities: $model.activities)
+        }
+        .padding()
+        .frame(width: 320, height: 640)
+        .onAppear(perform: {
+            model.run()
+        })
+        .onDisappear {
+            exit(0)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(requestHandler: .preview)
+            ContentView(model: ContentViewModel(requestHandler: .preview), notifier: .preview)
         }
     }
 }

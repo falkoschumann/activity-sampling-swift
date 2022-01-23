@@ -10,6 +10,7 @@ import SwiftUI
 struct ActivityFormView: View {
     @Binding var disabled: Bool
     @Binding var activity: String
+    @FocusState var activityFocused: Bool
     
     let log: () -> Void
     
@@ -18,7 +19,13 @@ struct ActivityFormView: View {
             Text("Activity:")
             TextField("What are you working on?", text: $activity)
                 .disabled(disabled)
+                .focused($activityFocused)
                 .onSubmit { log() }
+                .onChange(of: disabled) { newValue in
+                    if (!newValue) {
+                        activityFocused = true
+                    }
+                }
             Button(action: { log() }) {
                 Text("Log").frame(maxWidth: .infinity)
             }

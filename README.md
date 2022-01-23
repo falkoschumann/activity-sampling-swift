@@ -3,10 +3,11 @@
 ## Aktivität erfassen
 
 - [x] Erfasse momentane Aktivität
-- [ ] Frage Nutzer regelmäßig
-- [ ] Archiviere Zeitstempel, Intervall, Kunde, Projekt, Aufgabe, Notiz
+- [x] Frage Nutzer regelmäßig
+- [x] Unterbreche Nachfrage
+- [ ] Wiederhole eine der letzten Aktivitäten
 - [ ] Sichere Protokoll als CSV-Datei
-- [ ] Unterbreche Nachfrage 
+- [ ] Archiviere Zeitstempel, Intervall, Kunde, Projekt, Aufgabe, Notiz
 
 ## Nachfrage parametrieren
 

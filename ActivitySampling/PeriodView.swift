@@ -18,7 +18,7 @@ struct PeriodView: View {
     var body: some View {
         VStack {
             Text(remainingTime)
-            ProgressView(value: 1 - remaining / period)
+            ProgressView(value: period != 0 ? 1 - remaining / period : 0)
         }
     }
 }
@@ -35,7 +35,7 @@ struct PeriodView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PeriodView(period: .constant(1200), remaining: .constant(1200))
-                .previewDisplayName("not started")
+                .previewDisplayName("started")
                 .frame(width: 300)
             PeriodView(period: .constant(1200), remaining: .constant(400))
                 .previewDisplayName("in progress")
@@ -43,7 +43,9 @@ struct PeriodView_Previews: PreviewProvider {
             PeriodView(period: .constant(1200), remaining: .constant(0))
                 .previewDisplayName("finished")
                 .frame(width: 300)
-            
+            PeriodView(period: .constant(0), remaining: .constant(0))
+                .previewDisplayName("empty")
+                .frame(width: 300)
         }
     }
 }
