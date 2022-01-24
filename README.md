@@ -5,7 +5,7 @@
 - [x] Erfasse momentane Aktivität des Nutzers
 - [x] Frage Nutzer regelmäßig nach seiner Aktivität
 - [x] Unterbreche Nachfrage nach Aktivität
-- [ ] Erfasse als Aktivität eine der zuvor erfassten Aktivitäten 
+- [x] Erfasse als Aktivität eine der zuvor erfassten Aktivitäten 
 - [ ] Sichere Aktivitätsprotokoll als CSV-Datei
 - [ ] Archiviere Aktivität mit Zeitstempel, Intervall, Kunde, Projekt, Aufgabe, Notiz
 

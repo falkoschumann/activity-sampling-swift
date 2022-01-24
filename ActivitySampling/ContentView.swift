@@ -47,12 +47,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ActivityFormView(disabled: $model.formDisabled, activity: $model.activity, log: {
+            ActivityFormView(disabled: $model.formDisabled, activity: $model.activity, onLog: {
                 model.logActivity()
                 
             })
             PeriodView(period: $notifier.period, remaining: $notifier.remainingTime)
-            ActivityLogView(activities: $model.activities)
+            ActivityLogView(activities: $model.activities, onSelect: { activity in
+                model.activity = activity.description
+            })
         }
         .padding()
         .frame(width: 320, height: 640)

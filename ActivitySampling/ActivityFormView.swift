@@ -12,7 +12,7 @@ struct ActivityFormView: View {
     @Binding var activity: String
     @FocusState var activityFocused: Bool
     
-    let log: () -> Void
+    let onLog: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,13 +20,13 @@ struct ActivityFormView: View {
             TextField("What are you working on?", text: $activity)
                 .disabled(disabled)
                 .focused($activityFocused)
-                .onSubmit { log() }
+                .onSubmit { onLog() }
                 .onChange(of: disabled) { newValue in
                     if (!newValue) {
                         activityFocused = true
                     }
                 }
-            Button(action: { log() }) {
+            Button(action: { onLog() }) {
                 Text("Log").frame(maxWidth: .infinity)
             }
             .disabled(disabled)
@@ -37,13 +37,13 @@ struct ActivityFormView: View {
 struct ActivityFormView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityFormView(disabled: .constant(false), activity: .constant(""), log: {})
+            ActivityFormView(disabled: .constant(false), activity: .constant(""), onLog: {})
                 .previewDisplayName("empty, enabled")
                 .frame(width: 300)
-            ActivityFormView(disabled: .constant(false), activity: .constant("Lorem ipsum"), log: {})
+            ActivityFormView(disabled: .constant(false), activity: .constant("Lorem ipsum"), onLog: {})
                 .previewDisplayName("filled out, enabled")
                 .frame(width: 300)
-            ActivityFormView(disabled: .constant(true), activity: .constant(""), log: {})
+            ActivityFormView(disabled: .constant(true), activity: .constant(""), onLog: {})
                 .previewDisplayName("empty, disabled")
                 .frame(width: 300)
         }
