@@ -20,7 +20,7 @@ class ContentViewModel : ObservableObject {
         self.requestHandler = requestHandler
         
         let center = NotificationCenter.default
-        center.addObserver(forName: .ActivitySamplingOnPeriodElapsed, object: nil, queue: nil) { _ in
+        center.addObserver(forName: .activitySamplingOnPeriodElapsed, object: nil, queue: nil) { _ in
             self.formDisabled = false
         }
     }
@@ -37,7 +37,7 @@ class ContentViewModel : ObservableObject {
     
     deinit {
         let center = NotificationCenter.default
-        center.removeObserver(self, name: .ActivitySamplingOnPeriodElapsed, object: nil)
+        center.removeObserver(self, name: .activitySamplingOnPeriodElapsed, object: nil)
     }
 }
 

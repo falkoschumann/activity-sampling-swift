@@ -33,7 +33,7 @@ class Notifier : ObservableObject {
             self.remainingTime -= 1
             if self.remainingTime <= 0 {
                 self.remainingTime = self.period
-                NotificationCenter.default.post(name: .ActivitySamplingOnPeriodElapsed, object: self)
+                NotificationCenter.default.post(name: .activitySamplingOnPeriodElapsed, object: self)
             }
         }
     }
@@ -44,5 +44,5 @@ class Notifier : ObservableObject {
 }
 
 extension Notification.Name {
-    static let ActivitySamplingOnPeriodElapsed = Notification.Name("on-period-elapsed")
+    static let activitySamplingOnPeriodElapsed = Notification.Name("activity-sampling-on-period-elapsed")
 }
