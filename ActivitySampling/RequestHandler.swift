@@ -7,41 +7,39 @@
 
 import Foundation
 
-struct Activity: Equatable {
-    let timestamp: Date
-    let description: String
-}
-
 class RequestHandler {
-    static let shared = RequestHandler()
+    static let shared = RequestHandler(eventStore: CSVEventStore())
     
-    static let preview: RequestHandler = {
-        let handler = RequestHandler()
-        let dateFormatter = ISO8601DateFormatter()
-        handler.log = [
-            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:20:00Z")!, description: "Lorem ipsum dolor sit amet"),
-            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:40:00Z")!, description: "At vero eos et accusam"),
-            Activity(timestamp: dateFormatter.date(from: "2022-01-05T09:00:00Z")!, description: "Stet clita kasd gubergren")
-        ]
-        return handler
-    }()
+    static let preview: RequestHandler = RequestHandler(eventStore: MemoryEventStore([
+        ActivityLoggedEvent(timestamp: dateFormatter.date(from: "2022-01-04T21:20:00Z")!, period: 20 * 60, activity: "Lorem ipsum dolor sit amet"),
+        ActivityLoggedEvent(timestamp: dateFormatter.date(from: "2022-01-04T21:40:00Z")!, period: 20 * 60, activity: "At vero eos et accusam"),
+        ActivityLoggedEvent(timestamp: dateFormatter.date(from: "2022-01-05T09:00:00Z")!, period: 20 * 60, activity: "Stet clita kasd gubergren")
+    ]))
     
+    private let eventStore: EventStore
     private let dateFactory: () -> Date
-    private var log = [Activity]()
     
-    init(dateFactory: @escaping () -> Date) {
+    init(eventStore: EventStore, dateFactory: @escaping () -> Date) {
+        self.eventStore = eventStore
         self.dateFactory = dateFactory
     }
     
-    convenience init() {
-        self.init(dateFactory: { Date() })
+    convenience init(eventStore: EventStore) {
+        self.init(eventStore: eventStore, dateFactory: { Date() })
     }
     
-    func logActivity(_ description: String) {
-        log.append(Activity(timestamp: dateFactory(), description: description))
+    func logActivity(_ description: String, period: TimeInterval) {
+        eventStore.record(ActivityLoggedEvent(timestamp: dateFactory(), period: period, activity: description))
     }
     
     func selectAllActivities() -> [Activity] {
-        return log
+        return eventStore.replay()
+            .filter{ $0 is ActivityLoggedEvent }
+            .map {
+                let event = $0 as! ActivityLoggedEvent
+                return Activity(timestamp: event.timestamp, period: event.period, description: event.activity)
+            }
     }
 }
+
+fileprivate let dateFormatter = ISO8601DateFormatter()

@@ -16,12 +16,15 @@ class ContentViewModel : ObservableObject {
     
     @Published var activities: [Activity] = []
     
+    private var period: TimeInterval = 0
+    
     init(requestHandler: RequestHandler) {
         self.requestHandler = requestHandler
         
         let center = NotificationCenter.default
-        center.addObserver(forName: .activitySamplingOnPeriodElapsed, object: nil, queue: nil) { _ in
+        center.addObserver(forName: .periodElapsed, object: nil, queue: nil) { notification in
             self.formDisabled = false
+            self.period = notification.userInfo!["period"] as! TimeInterval
         }
     }
     
@@ -30,14 +33,14 @@ class ContentViewModel : ObservableObject {
     }
     
     func logActivity() {
-        requestHandler.logActivity(activity)
+        requestHandler.logActivity(activity, period: period)
         activities = requestHandler.selectAllActivities()
         formDisabled = true
     }
     
     deinit {
         let center = NotificationCenter.default
-        center.removeObserver(self, name: .activitySamplingOnPeriodElapsed, object: nil)
+        center.removeObserver(self, name: .periodElapsed, object: nil)
     }
 }
 

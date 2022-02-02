@@ -8,35 +8,46 @@
 import XCTest
 
 class RequestHandlerTests: XCTestCase {
-    private var fixture: RequestHandler!
-    
-    override func setUpWithError() throws {
-        fixture = RequestHandler(dateFactory: { ISO8601DateFormatter().date(from: "2021-12-13T21:39:56Z")! })
-    }
-    
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
     func testLogActivity() throws {
-        fixture.logActivity("Lorem ipsum")
+        let fixture = RequestHandler(
+            eventStore: MemoryEventStore(),
+            dateFactory: { ISO8601DateFormatter().date(from: "2021-12-13T21:39:56Z")! }
+        )
+        
+        fixture.logActivity("Lorem ipsum", period: 20 * 60)
         
         let activities = fixture.selectAllActivities()
-        
-        XCTAssertEqual(activities, [createActivity(timestamp: "2021-12-13T21:39:56Z")])
+        XCTAssertEqual(activities, [
+            Activity(
+                timestamp: dateFormatter.date(from: "2021-12-13T21:39:56Z")!,
+                period: 20 * 60,
+                description: "Lorem ipsum"
+            )
+        ])
     }
     
     func testSelectActivities() throws {
-        fixture.logActivity("Lorem ipsum")
-        
+        let fixture = RequestHandler(
+            eventStore: MemoryEventStore([
+                ActivityLoggedEvent(
+                    timestamp: dateFormatter.date(from: "2021-12-13T21:39:56Z")!,
+                    period: 20 * 60,
+                    activity: "Lorem ipsum"
+                )
+            ]),
+            dateFactory: { ISO8601DateFormatter().date(from: "2021-12-13T21:39:56Z")! }
+        )
+                
         let activities = fixture.selectAllActivities()
         
-        XCTAssertEqual(activities, [createActivity(timestamp: "2021-12-13T21:39:56Z")])
+        XCTAssertEqual(activities, [
+            Activity(
+                timestamp: dateFormatter.date(from: "2021-12-13T21:39:56Z")!,
+                period: 20 * 60,
+                description: "Lorem ipsum"
+            )
+        ])
     }
 }
 
-fileprivate func createActivity(timestamp: String) -> Activity {
-    let t = ISO8601DateFormatter().date(from: timestamp)
-    let d = "Lorem ipsum"
-    return Activity(timestamp: t!, description: d)
-}
+fileprivate let dateFormatter = ISO8601DateFormatter()

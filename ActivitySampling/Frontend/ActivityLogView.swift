@@ -15,7 +15,7 @@ struct ActivityLogView: View {
     private var log: [WorkingDay] {
         Dictionary(grouping: activities, by: {it in logDateFormatter.string(from: it.timestamp)})
             .map({ (dateString, activities) in
-                return WorkingDay(date: logDateFormatter.date(from: dateString)!, activities: activities)
+                WorkingDay(date: logDateFormatter.date(from: dateString)!, activities: activities)
             }).sorted()
     }
     
@@ -62,15 +62,15 @@ private let logTimeFormatter: DateFormatter = {
     return formatter
 }()
 
-private let dateFormatter = ISO8601DateFormatter()
-
 struct ActivityLogView_Previews: PreviewProvider {
     static var previews: some View {
         ActivityLogView(activities: .constant([
-            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:20:00Z")!, description: "Lorem ipsum dolor sit amet"),
-            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:40:00Z")!, description: "At vero eos et accusam"),
-            Activity(timestamp: dateFormatter.date(from: "2022-01-05T08:00:00Z")!, description: "Stet clita kasd gubergren")
+            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:20:00Z")!, period: 20 * 60, description: "Lorem ipsum dolor sit amet"),
+            Activity(timestamp: dateFormatter.date(from: "2022-01-04T21:40:00Z")!, period: 20 * 60, description: "At vero eos et accusam"),
+            Activity(timestamp: dateFormatter.date(from: "2022-01-05T08:00:00Z")!, period: 20 * 60, description: "Stet clita kasd gubergren")
         ]), onSelect: { _ in })
             .frame(width: 300)
     }
 }
+
+private let dateFormatter = ISO8601DateFormatter()
